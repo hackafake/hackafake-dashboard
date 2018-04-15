@@ -1,15 +1,25 @@
+$main-color: #DF645D;
+
+.btn {
+    background-color: $main-color;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: white;
+    text-decoration: none;
+}
+
 .grid {
+    box-sizing:border-box;
     text-align: center;
-    margin: 40px;
     display: grid;
-    grid-template-rows: 1fr 1fr 3fr 1fr;
+    grid-template-rows: 100px 100px auto 60px;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 
         "logo logo"
         "counter counter"
         "faker fakenews"
         "footer footer";
-    min-height: 100vh;
+    height:100%;
 
     .footer {
         grid-area: footer;
@@ -25,6 +35,10 @@
     }
     .fakenews {
         grid-area: fakenews;
+    }
+
+    .faker, .fakenews {
+        text-align: left;
     }
     .counter {
         grid-area: counter;

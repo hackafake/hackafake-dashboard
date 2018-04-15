@@ -7,12 +7,19 @@
   </div>
   <div class="faker">
     <h2>Top Faker</h2>
+    <div *ngFor="let user of users">
+      <p>{{user.username}} - {{Math.log(user.fake) + 1 | number}}</p>
+    </div>
   </div>
   <div class="fakenews">
     <h2>Top Fake News</h2>
+    <div *ngFor="let fake of fakes">
+      <p>{{fake.title}}</p>
+    </div>
+
   </div>
   <div class="footer">
-    <a href=""> Test the Widget </a>
+    <a class="btn" href="https://t.me/hackafakedemo"> Test the Widget </a>
     <p> made with love in Turin - Droidcon Hackaton 2018</p>
   </div>
 </div>
