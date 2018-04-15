@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-const URL = 'http://52.212.172.20:8080';
+const URL = 'https://api.hackafake.it';
 
 interface User {
   username: string,
