@@ -12,7 +12,7 @@ $main-color: #DF645D;
     box-sizing:border-box;
     text-align: center;
     display: grid;
-    grid-template-rows: 100px 100px auto 60px;
+    grid-template-rows: 100px 100px auto auto;
     grid-template-columns: 1fr 3fr;
     grid-template-areas: 
         "logo logo"
@@ -20,9 +20,23 @@ $main-color: #DF645D;
         "faker fakenews"
         "footer footer";
     height:100%;
+    width: 100%;
 
+    @media only screen and (max-width: 600px) {
+        grid-template-rows: 100px auto auto auto auto;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "logo"
+            "counter"
+            "faker" 
+            "fakenews"
+            "footer";
+    }
+    
     .footer {
         grid-area: footer;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
     .logo {
         grid-area: logo;
