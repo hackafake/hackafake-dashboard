@@ -33,11 +33,11 @@ export class DashboardComponent implements OnInit {
     )
 
     this.http.get<User[]>(URL + '/users').subscribe(
-      data => this.users = data
+      data => this.users = data.filter(user => user.fake > 0).filter((item, index) => index < 5)
     )
 
     this.http.get<Fake[]>(URL + '/fakenews').subscribe(
-      data => this.fakes = data.filter(el => el.is_fake )
+      data => this.fakes = data.filter(el => el.is_fake ).filter((item, index) => index < 5)
     )
 
   }

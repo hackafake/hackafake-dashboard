@@ -32,6 +32,17 @@ $main-color: #DF645D;
     }
     .faker {
         grid-area: faker;
+        div {
+            display: flex;
+            .name {
+                padding-right: 10px;
+                font-weight: bold;
+            }
+            .score {
+                font-weight: 100;
+            }
+        }
+        
     }
     .fakenews {
         grid-area: fakenews;
@@ -42,6 +53,14 @@ $main-color: #DF645D;
     }
     .counter {
         grid-area: counter;
+        h1 {
+            font-size: 30pt;
+            font-weight: 400;
+            span {
+                font-weight: bold;
+                color: $main-color;
+            }
+        }
     }
 }
 

@@ -3,12 +3,14 @@
     <img src="/assets/logo.png" alt="">
   </div>
   <div class="counter">
-    <h1> We Detected {{counter}} fake news </h1>
+    <h1> We Detected <span class="counter">{{counter}}</span> fake news </h1>
   </div>
   <div class="faker">
     <h2>Top Faker</h2>
     <div *ngFor="let user of users">
-      <p>{{user.username}} - {{Math.log(user.fake) + 1 | number}}</p>
+      <div>
+        <p class="name">{{user.username}}</p>
+        <p class="score">{{Math.log(user.fake ) + 1 | number}}</p></div>
     </div>
   </div>
   <div class="fakenews">
