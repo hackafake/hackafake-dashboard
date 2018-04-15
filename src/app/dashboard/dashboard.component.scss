@@ -2,7 +2,7 @@ $main-color: #DF645D;
 
 .btn {
     background-color: $main-color;
-    padding: 5px 10px;
+    padding: 10px 20px;
     border-radius: 3px;
     color: white;
     text-decoration: none;
@@ -13,7 +13,7 @@ $main-color: #DF645D;
     text-align: center;
     display: grid;
     grid-template-rows: 100px 100px auto 60px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 3fr;
     grid-template-areas: 
         "logo logo"
         "counter counter"
@@ -59,13 +59,22 @@ $main-color: #DF645D;
     }
 
     .faker, .fakenews {
+        .title {
+            display: flex;
+            align-items: center;
+            img {
+                padding-right: 10px;
+                width:  40px;
+                height: 40px;
+            }
+        }
         text-align: left;
     }
     .counter {
         grid-area: counter;
         h1 {
             font-size: 30pt;
-            font-weight: 400;
+            font-weight: bold;
             span {
                 font-weight: bold;
                 color: $main-color;
