@@ -9,14 +9,15 @@
     <h2>Top Faker</h2>
     <div *ngFor="let user of users">
       <div>
-        <p class="name">{{user.username}}</p>
-        <p class="score">{{Math.log(user.fake ) + 1 | number}}</p></div>
+          <p class="score">{{Math.log(user.fake ) + 1 | number : '1.2-2'}}</p></div>
+          <p class="name">{{user.username}}</p>
     </div>
   </div>
   <div class="fakenews">
     <h2>Top Fake News</h2>
     <div *ngFor="let fake of fakes">
-      <p>{{fake.title}}</p>
+      <p class="score">{{Math.log(fake.counter ) + 1 | number : '1.2-2'}}</p>
+      <p class="title">{{fake.title}}</p>
     </div>
 
   </div>

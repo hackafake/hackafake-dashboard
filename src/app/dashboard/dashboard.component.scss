@@ -35,7 +35,7 @@ $main-color: #DF645D;
         div {
             display: flex;
             .name {
-                padding-right: 10px;
+                padding-left: 10px;
                 font-weight: bold;
             }
             .score {
@@ -46,6 +46,16 @@ $main-color: #DF645D;
     }
     .fakenews {
         grid-area: fakenews;
+        div {
+            display: flex;
+            .title {
+                padding-left: 10px;
+            }
+            .score {
+                font-weight: 100;
+            }    
+        }
+
     }
 
     .faker, .fakenews {
