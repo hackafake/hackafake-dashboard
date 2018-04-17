@@ -1,21 +1,26 @@
 # hackAfake Dashboard
 
-![Screehn](screen.png)
+![Screen](screen.png)
 
-The hackAfake Dashboard is a webapp that consumes the [hackAfake web API](https://api.hackafake.it) and display informations from the collected data.
-
+The hackAfake Dashboard is a webapp that consumes the [hackAfake web API](https://api.hackafake.it) and display information from the collected data.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. 
+
+The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng generate component component-name` to generate a new component. 
+
+You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. 
+
+Use the `-prod` flag for a production build.
 
 ## Running unit tests
 
