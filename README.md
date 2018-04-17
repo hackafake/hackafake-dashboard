@@ -1,6 +1,9 @@
-# HackafakeDashboard
+# hackAfake Dashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+![Screehn](screen.png)
+
+The hackAfake Dashboard is a webapp that consumes the [hackAfake web API](https://api.hackafake.it) and display informations from the collected data.
+
 
 ## Development server
 
