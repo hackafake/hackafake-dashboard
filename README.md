@@ -2,7 +2,7 @@
 
 ![Screen](screen.png)
 
-The hackAfake Dashboard is a webapp that consumes the [hackAfake web API](https://api.hackafake.it) and display information from the collected data.
+The hackAfake Dashboard is a webapp that consumes the [hackAfake web API](https://api.hackafake.it) and displays information from the collected data.
 
 ## Development server
 
