@@ -3,57 +3,82 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo 'INFO: Stage "Build" started'
-        sh '''docker --version
+        echo 'INFO: Executing stage Build'
+        sh '''#/bin/bash
+        
+docker --version
 docker-compose --version
-docker-compose build'''
-        echo 'INFO: Stage "Build" completed successfully'
+docker-compose build --pull
+
+#EOF
+'''
+      }
+    }
+    stage('Test') {
+      steps {
+        echo 'TODO'
       }
     }
     stage('Deploy') {
       steps {
-        // sh 'docker-machine help'
-        // FIXME: Fetch *.pem in a more secure way
+        echo 'INFO: Executing stage Deploy-staging'
+        sh 'printenv | sort'
         sh '''#/bin/bash
+        
+# Deploy project to remote server
 
-AWS_KEY=hackathon_droidcon.pem
-# DEBUG
-if [ ! -e  ${AWS_KEY} ]; then
-    curl -o ${AWS_KEY} https://gist.githubusercontent.com/gmacario/b2285d6347ec7c9c4954856a93958b1d/raw/4559359b4b8926217f10881c30b35fc39f9b1f7a/hackaton_droidcon.pem
-    chmod 600 ${AWS_KEY}
-    ls -la ${AWS_KEY}
-    sha256sum ${AWS_KEY}
+echo "DEBUG: JOB_NAME=${JOB_NAME}"
+echo "DEBUG: BRANCH_NAME=${BRANCH_NAME}"
+
+echo "DEBUG: Inspecting host configuration"
+id; hostname; pwd; ls -la
+
+if [ "$BRANCH_NAME" = "master" ]; then
+
+  echo "INFO: Deploying to staging server"
+  
+  REMOTEUSER=root
+  REMOTEHOST=cc-vm2.solarma.it
+  REMOTEDIR=/var/tmp/${JOB_NAME}
+  
+elif [ "$BRANCH_NAME" = "prod" ]; then
+
+  echo "INFO: Deploying to production server"
+  
+  REMOTEUSER=root
+  REMOTEHOST=cc-vm4.solarma.it
+  REMOTEDIR=/var/tmp/${JOB_NAME}
+  
+else
+
+  echo "INFO: BRANCH_NAME=${BRANCH_NAME} ==> No action"
+  return
+    
 fi
 
-# ssh -o StrictHostKeyChecking=no -i ${AWS_KEY} ubuntu@52.212.172.20 sh -c "pwd; id; ls -la; df -h"
+echo "DEBUG: Inspecting target configuration"
+ssh ${REMOTEUSER}@${REMOTEHOST} "id; hostname; pwd; ls -la"
 
-ssh -o StrictHostKeyChecking=no -i ${AWS_KEY} ubuntu@52.212.172.20 sh -c "\
-id && \
-pwd && \
-cd /home/ubuntu/github/SOLARMA/hackafake-dashboard && \
-git pull --all --prune && \
-git log -1 && \
-git status && \
-docker-compose build --pull && \
+if [ "${REMOTEUSER}" = "root" ]; then
+  echo "INFO: Preparing remote host ${REMOTEHOST}"
+  # ssh -o StrictHostKeyChecking=no ${REMOTEUSER}@${REMOTEHOST} sh -c "\\
+  #      apt-get update && apt-get -y dist-upgrade && \\
+  #      apt-get -y install git"
+  # TODO: Install docker
+  # TODO: Install docker-compose
+fi
+
+echo "INFO: Deploying container to ${REMOTEUSER}@${REMOTEHOST}:${REMOTEDIR}"
+ssh ${REMOTEUSER}@${REMOTEHOST} "mkdir -p ${REMOTEDIR}"
+rsync -avz . "${REMOTEUSER}@${REMOTEHOST}:${REMOTEDIR}/"
+ssh ${REMOTEUSER}@${REMOTEHOST} "cd ${REMOTEDIR} && \\
+git log -1 && \\
+git status && \\
+docker-compose build --pull && \\
 docker-compose up -d"
-
-# DEBUG
-# pwd; id; ls -la; df -h
-# docker --version
-# docker images
-# docker ps
-# docker-compose --version
-# 
-# cd github/SOLARMA/hackafake-backend
-# git pull --all --prune
-# git log -1
-# git status
-# docker-compose build --pull
-# docker-compose up
 
 # EOF
 '''
-        // sh 'ssh -i "hackaton_droidcon.pem" ubuntu@52.212.172.20 "pwd; id; ls -la; df -h"'
       }
     }
   }
